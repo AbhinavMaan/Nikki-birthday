@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap');
+    </style>
+
+</head>
+
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .header{
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            height: 200vh;
+            width: 100%;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.3926820728291317) 0%, rgba(0,0,0,1) 100%), url(bg1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .rouge-script-regular {
+            font-family: "Rouge Script", serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        #header_h1{
+            font-family: "Rouge Script", serif;
+            text-align: center;
+            font-weight: bolder;
+            font-size:80px;
+            margin: 0;
+            padding-top: 25%;
+        }
+
+        #header_p{
+            font-family: "Rouge Script", serif;
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            padding-top: 10%;
+        }
+
+        h3{
+            font-family: "Rouge Script", serif;
+            text-align: center;
+            font-weight: bolder;
+            font-size:80px;
+            margin: 0;
+        }
+
+        .image-section {
+            height: 100vh;
+            width: 100%;
+            background-color: #f4f4f4;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 70px 0;
+            gap: 50px;
+        }
+
+        .row {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+            position: relative;
+        }
+
+        .row img {
+            width: 300px;
+            height: 300px;
+            margin: 0 15px;
+            object-fit: cover;
+            border-radius: 15%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+            transition: transform 0.3s;
+        }
+
+        .row img:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes left-to-right {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes right-to-left {
+            0% {
+                transform: translateX(100%);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .row:first-child {
+            animation: left-to-right 15s linear infinite;
+        }
+
+        .row:first-child:hover {
+            animation-play-state: paused;
+        }
+
+        .row:last-child {
+            animation: right-to-left 15s linear infinite;
+        }
+
+        .row:last-child:hover {
+            animation-play-state: paused;
+        }
+
+    </style>
+
+<body>
+    
+    <div class="header">
+
+        <h1 id="header_h1">Happy Birthday Sweet Sister</h1>
+        <p id="header_p">Happy Birthday to the most amazing little sister ever! 🎉🎂 <br>
+
+            You’re not just my sister—you’re my sunshine, my partner in fun, and my best buddy. I love how you make everyone around you smile with your kindness and all the silly, funny things you do! <br>
+            
+            Today is your special day, and I hope it’s filled with your favorite things—yummy treats, big surprises, and lots of love and laughter. You deserve the best birthday ever because you’re such a wonderful person. <br>
+            
+            Keep being the sweet, smart, and super cool girl that you are. I’m so lucky to have you as my sister, and I can’t wait to see you in person. <br>
+            
+            Love you so much! 💖</p>
+
+    </div>
+
+    <h3>Some Sweet Memories</h3>
+
+    <div class="image-section">
+        <div class="row">
+            <img src="img4.jpg" alt="Placeholder Image">
+            <img src="img3.jpg" alt="Placeholder Image">
+            <img src="img2.jpg" alt="Placeholder Image">
+            <img src="img1.jpg" alt="Placeholder Image">
+        </div>
+        <div class="row">
+            <img src="img8.jpg" alt="Placeholder Image">
+            <img src="img7.jpg" alt="Placeholder Image">
+            <img src="img6.jpg" alt="Placeholder Image">
+            <img src="img5.jpg" alt="Placeholder Image">
+        </div>
+    </div>
+
+    <script>
+
+        'use strict';
+
+window.onload = function () {
+  // Globals
+  var random = Math.random,
+    cos = Math.cos,
+    sin = Math.sin,
+    PI = Math.PI,
+    PI2 = PI * 2,
+    timer = undefined,
+    frame = undefined,
+    confetti = [];
+
+  var particles = 10,
+    spread = 40,
+    sizeMin = 10,
+    sizeMax = 20 - sizeMin,
+    eccentricity = 10,
+    deviation = 100,
+    dxThetaMin = -0.1,
+    dxThetaMax = -dxThetaMin - dxThetaMin,
+    dyMin = 0.13,
+    dyMax = 0.18,
+    dThetaMin = 0.4,
+    dThetaMax = 0.7 - dThetaMin;
+
+  // Adding emoji options
+  var emojis = ["🎂", "🌈", "🦄", "🌺", "💮", "🎉"];
+  var useEmoji = true; // Toggle between emoji and regular confetti particles
+
+  function randomEmoji() {
+    return emojis[Math.floor(random() * emojis.length)];
+  }
+
+  var container = document.createElement('div');
+  container.style.position = 'fixed';
+  container.style.top = '0';
+  container.style.left = '0';
+  container.style.width = '100%';
+  container.style.height = '0';
+  container.style.overflow = 'visible';
+  container.style.zIndex = '9999';
+
+  // Confetto constructor
+  function Confetto() {
+    this.frame = 0;
+    this.outer = document.createElement('div');
+
+    if (useEmoji && random() < 0.5) {
+      // Render an emoji confetto
+      this.outer.textContent = randomEmoji();
+      this.outer.style.fontSize = (sizeMin + sizeMax * random()) + 'px';
+    } else {
+      // Render a traditional colorful confetto
+      this.outer.style.width = (sizeMin + sizeMax * random()) + 'px';
+      this.outer.style.height = (sizeMin + sizeMax * random()) + 'px';
+      this.outer.style.backgroundColor = `rgb(${(200 * random()) | 0}, ${(200 * random()) | 0}, ${(200 * random()) | 0})`;
+    }
+
+    var outerStyle = this.outer.style;
+    outerStyle.position = 'absolute';
+    outerStyle.perspective = '50px';
+    outerStyle.transform = 'rotate(' + (360 * random()) + 'deg)';
+
+    this.axis =
+      'rotate3D(' + cos(360 * random()) + ',' + cos(360 * random()) + ',0,';
+    this.theta = 360 * random();
+    this.dTheta = dThetaMin + dThetaMax * random();
+    outerStyle.transform = this.axis + this.theta + 'deg)';
+
+    this.x = window.innerWidth * random();
+    this.y = -deviation;
+    this.dx = sin(dxThetaMin + dxThetaMax * random());
+    this.dy = dyMin + dyMax * random();
+    outerStyle.left = this.x + 'px';
+    outerStyle.top = this.y + 'px';
+
+    this.update = function (height, delta) {
+      this.frame += delta;
+      this.x += this.dx * delta;
+      this.y += this.dy * delta;
+      this.theta += this.dTheta * delta;
+
+      outerStyle.left = this.x + 'px';
+      outerStyle.top = this.y + 'px';
+      outerStyle.transform = this.axis + this.theta + 'deg)';
+
+      return this.y > height + deviation;
+    };
+  }
+
+  function poof() {
+    if (!frame) {
+      document.body.appendChild(container);
+
+      (function addConfetto() {
+        var confetto = new Confetto();
+        confetti.push(confetto);
+        container.appendChild(confetto.outer);
+        timer = setTimeout(addConfetto, spread * random());
+      })();
+
+      var prev = undefined;
+      requestAnimationFrame(function loop(timestamp) {
+        var delta = prev ? timestamp - prev : 0;
+        prev = timestamp;
+        var height = window.innerHeight;
+
+        for (var i = confetti.length - 1; i >= 0; --i) {
+          if (confetti[i].update(height, delta)) {
+            container.removeChild(confetti[i].outer);
+            confetti.splice(i, 1);
+          }
+        }
+
+        if (timer || confetti.length)
+          return (frame = requestAnimationFrame(loop));
+
+        document.body.removeChild(container);
+        frame = undefined;
+      });
+
+      // Stop confetti after 10 seconds
+      setTimeout(() => {
+        clearTimeout(timer);
+        timer = undefined;
+      }, 7000);
+    }
+  }
+
+  poof();
+};
+
+
+    </script>
+
+</body>
+</html>
